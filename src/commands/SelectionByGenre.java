@@ -1,44 +1,49 @@
 package commands;
 
 import java.sql.* ;
-import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 public class SelectionByGenre {
-	public static ArrayList<String> select_event_by_genre(String genre){
-		ArrayList<String> array_output = new ArrayList<String>() ;
+	public static DefaultTableModel select_event_by_genre(String genre){
 		try {
-			
+			DefaultTableModel model = new DefaultTableModel(new String[]{"Performer Name", "Act name", "City", "Event Date"}, 0);
 	        String url = "jdbc:postgresql://comp421.cs.mcgill.ca:5432/cs421";	  
 	        Connection con = DriverManager.getConnection(url,"cs421g13", "Comp421!") ;
 	
 	        Statement stmt = con.createStatement();
 		        
-	        String sqlString = "SELECT * FROM Event WHERE genre = " + "'"+genre+"';";
-	        ResultSet rs = stmt.executeQuery(sqlString) ;
+	        String sqlString = "SELECT actname, performername, city, eventdate "
+	        		+ "FROM event NATURAL JOIN venue NATURAL JOIN performs NATURAL JOIN performer "
+	        		+ "WHERE genre = " + "'"+genre+"';";
+	   
+	        ResultSet rs = stmt.executeQuery(sqlString) ;    
 	   
 	        while (rs.next()) {
-	            String actname = rs.getString(4) ;
-	            Date eventdate = rs.getDate(6) ;
-	            Time startTime = rs.getTime(1) ; 
-	            String output = "Act: " + actname + " Date: "+eventdate.toString() + " Start Time: "+ startTime.toString();
-	            array_output.add(output) ;
+	            String actname = rs.getString(1) ;
+	            String performername = rs.getString(2) ;
+	            String city = rs.getString(3) ;
+	            Date eventdate = rs.getDate(4) ;
+
+	            model.addRow(new Object[]{performername, actname , city , eventdate});
 	        }
 	        
 	        rs.close();
 	        stmt.close();
 	        con.close();
 	
-	        return array_output;
+	        return model;
 			}
 		catch (SQLException e)
         {
-            Integer sqlCode = e.getErrorCode(); // Get SQLCODE
-            String sqlState = e.getSQLState(); // Get SQLSTATE
-            System.out.println(e.getMessage());
-            System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
-            array_output = new ArrayList<String>() ;
-            array_output.add(e.getMessage());
-            return array_output;
+            Integer sqlCode = e.getErrorCode(); 
+            String sqlState = e.getSQLState();
+            String sqlMessage = e.getMessage();
+
+            DefaultTableModel model = new DefaultTableModel(new String[]{"sqlCode", "sqlState", "sqlMessage"}, 0);
+            model.addRow(new String[]{sqlCode.toString(), sqlState, sqlMessage});
+           
+            return model;
+
         }
 		
 		

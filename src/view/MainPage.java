@@ -12,8 +12,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.WindowConstants;
-
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -33,6 +35,7 @@ public class MainPage extends JFrame{
 	private JLabel dropDownLabel;
 	private JComboBox<String> commandDropDown;
 	private JButton goButton;
+	private JScrollPane scrollpane;
 
 	public MainPage() {
 		init();
@@ -55,16 +58,19 @@ public class MainPage extends JFrame{
 		commandDropDown = new JComboBox<String>(new String[0]);
 		goButton = new JButton();
 		resMessage = new JLabel();
+		scrollpane = new JScrollPane();
 
 		//Default texts
 		dropDownLabel.setText("Select the command to perform");
 		goButton.setText("Go!");
 		commandDropDown.addItem("--");
-		commandDropDown.addItem("Selection By Genre");
-		commandDropDown.addItem("Register as individual");
-		commandDropDown.addItem("Buy Ticket");
-		commandDropDown.addItem("Get Performance Between Dates");
+		
+		commandDropDown.addItem("Register as Individual");
 		commandDropDown.addItem("Update Password");
+		commandDropDown.addItem("Buy Ticket");
+		commandDropDown.addItem("Selection By Genre");
+		commandDropDown.addItem("Get Performance Between Dates");
+		
 		resMessage.setText("The results will appear here");
 
 		//layout
@@ -74,6 +80,7 @@ public class MainPage extends JFrame{
 		daPanel.add(commandDropDown);
 		daPanel.add(goButton);
 		daPanel.add(resMessage);
+		daPanel.add(scrollpane);
 		getContentPane().add(daPanel);
 
 		GroupLayout layout = new GroupLayout(daPanel);
@@ -86,6 +93,7 @@ public class MainPage extends JFrame{
 		GroupLayout.Group vg0 = layout.createParallelGroup();
 		GroupLayout.Group vg1 = layout.createParallelGroup();
 		GroupLayout.Group vg2 = layout.createParallelGroup();
+		GroupLayout.Group vg3 = layout.createParallelGroup();
 
 
 		//Set errormessage location
@@ -102,12 +110,15 @@ public class MainPage extends JFrame{
 
 		//Set go button location
 
-		hg0.addComponent(goButton);
-		vg2.addComponent(goButton);
+		hg1.addComponent(goButton);
+		vg1.addComponent(goButton);
 
 		//Response
-		hg1.addComponent(resMessage);
-		vg0.addComponent(resMessage);
+		hg0.addComponent(resMessage);
+		vg2.addComponent(resMessage);
+		
+		hg0.addComponent(scrollpane);
+		vg3.addComponent(scrollpane);
 
 		//Make seq groups
 		GroupLayout.SequentialGroup hseq1 = layout.createSequentialGroup();
@@ -118,6 +129,7 @@ public class MainPage extends JFrame{
 		vseq1.addGroup(vg0);
 		vseq1.addGroup(vg1);
 		vseq1.addGroup(vg2);
+		vseq1.addGroup(vg3);
 
 		//Create horizontal layout
 		layout.setHorizontalGroup(hseq1);
@@ -153,13 +165,28 @@ public class MainPage extends JFrame{
 			String[] genreList = { "Pop", "Rock", "Alternative" };
 		    String genre = (String) JOptionPane.showInputDialog(null, "Select the genre", "genre", 
 		    		JOptionPane.QUESTION_MESSAGE, null,genreList, genreList[1]); 
-			String resMsg = "";
-			ArrayList<String> resList = SelectionByGenre.select_event_by_genre(genre);
-			for (String s : resList) {
-				resMsg = resMsg + "<br>" + s;
+
+			DefaultTableModel resTable = SelectionByGenre.select_event_by_genre(genre);
+			
+			// if error
+			if (resTable.getColumnName(0).equals("sqlCode")) {
+	            String sqlCode =  (String) resTable.getValueAt(0,0); 
+	            String sqlState = (String) resTable.getValueAt(0,1);
+	            String sqlMessage = (String) resTable.getValueAt(0,2);
+	            error = sqlMessage;
+				resMessage.setText("Unsuccessful operation");
+				
+				
 			}
-			resMessage.setText("<html>"+ resMsg + "<html>");
-			//			resMessage.setText("<html>line one<br> line two</html>");
+			else {
+				JTable jresTable = new JTable(resTable);
+		        scrollpane.setViewportView(new JScrollPane(jresTable)); 
+				
+			}
+			refreshData();
+			return;
+
+
 		} else if(commandDropDown.getSelectedItem().toString().equals("Register as individual")) {
 			String email = JOptionPane.showInputDialog("Enter your email");
 			String password = JOptionPane.showInputDialog("Enter your password");
@@ -174,53 +201,47 @@ public class MainPage extends JFrame{
 			refreshData();
 			return;
 		} else if(commandDropDown.getSelectedItem().toString().equals("Buy Ticket")) {
-//			String venueName = JOptionPane.showInputDialog("Enter the venue name ");
-//			String startTime = JOptionPane.showInputDialog("Enter the start time");
-//			String actName = JOptionPane.showInputDialog("Enter the act name");
-//			String eventDate = JOptionPane.showInputDialog("Enter the event date (YYYY-MM-dd)");
-//			int sectionNo = 0;
-//			int rowNo = 0;
-//			int seatNo =0;
-//			try {
-//				sectionNo = Integer.parseInt(JOptionPane.showInputDialog("Enter the section number "));
-//				rowNo = Integer.parseInt(JOptionPane.showInputDialog("Enter the row number"));
-//				seatNo = Integer.parseInt(JOptionPane.showInputDialog("Enter the seat number"));
-//			} catch (Exception e) {
-//				error = "Section number, row number and seat number must be integers.";
-//				refreshData();
-//				return;
-//			}
-//			String email = JOptionPane.showInputDialog("Enter your email");
-//			String ccno = JOptionPane.showInputDialog("Enter your credit card number");
-//			try {
-//				boolean tf = BuyTicket.buyTicket(venueName, startTime, actName, eventDate, sectionNo, rowNo, seatNo, email, ccno);
-//				if(tf) {
-//					resMessage.setText("Ticket successfully purchased!");
-//				} else {
-//					resMessage.setText("Failed to purchase ticket");
-//				}
-//				refreshData();
-//				return;
-//			} catch (SQLException e) {
-//				error = e.getMessage();
-//				refreshData();
-//				return;
-//			}
-			return ;
+ 			String ticketid = JOptionPane.showInputDialog("Enter ticket id");
+			String email = JOptionPane.showInputDialog("Enter email address");
+			String ccno = JOptionPane.showInputDialog("Enter credit card number");
+			boolean result = BuyTicket.buyTicket(ticketid, email, ccno);
+			String resMsg = "";
+			if(result)
+				resMsg = "Ticket " + ticketid + " successfully purchased";
+			else
+				resMsg = ticketid + " was not able to be purchased. Check that this ticket is still available and " +
+			"that you have entered your customer details correctly";
+			resMessage.setText(resMsg);
+		
+		
 		} else if(commandDropDown.getSelectedItem().toString().equals("Get Performance Between Dates")) {
 
 			
 			String startDate = JOptionPane.showInputDialog("Enter the earliest date (YYYY-MM-dd)");
 			String endDate = JOptionPane.showInputDialog("Enter the latest date (YYYY-MM-dd)");
 			String actName = JOptionPane.showInputDialog("Enter the performer");
-
-			String resMsg = "Start Time End Time Act Name";
-			ArrayList<String> resList = GetPerformancesBetweenDates.getPerformacesBetweenDates(startDate, endDate, actName);
 			
-			for (String s : resList) {
-				resMsg = resMsg + "<br>" + s;
+			
+			DefaultTableModel resTable =  GetPerformancesBetweenDates.getPerformacesBetweenDates(startDate, endDate, actName);
+			
+			// if error
+			if (resTable.getColumnName(0).equals("sqlCode")) {
+	            String sqlCode =  (String) resTable.getValueAt(0,0); 
+	            String sqlState = (String) resTable.getValueAt(0,1);
+	            String sqlMessage = (String) resTable.getValueAt(0,2);
+	            error = sqlMessage;
+				resMessage.setText("Unsuccessful operation");
+
+				
 			}
-			resMessage.setText("<html>"+ resMsg + "<html>");
+			else {
+				JTable jresTable = new JTable(resTable);
+		        scrollpane.setViewportView(new JScrollPane(jresTable)); 
+				
+			}
+			refreshData();
+	        return;
+			
 			
 			
 			
