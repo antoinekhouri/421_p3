@@ -12,11 +12,18 @@ public class UpdatePasssword {
 			Connection con = DriverManager.getConnection (url,"cs421g13", "Comp421!") ;
 			
 			Statement stmt = con.createStatement();
-		    String updateSQL = "UPDATE " +  "IndividualCustomer" + " SET password = " + newpassword 
-		    		+" WHERE email = " + email + " AND " + "password=" + oldpassword;
-		    stmt.executeUpdate(updateSQL);
-			
-			return "Sucess";
+		    String updateSQL = "UPDATE " +  "IndividualCustomer" + " SET password = '" + newpassword 
+		    		+"' WHERE email = '" + email + "' AND " + "password='" + oldpassword + "';";
+		    
+		    int count = stmt.executeUpdate(updateSQL);
+		    
+		    if (count > 0) {
+		    	return "Success";
+		    	}
+		    else {
+		    	return "Update failed";
+		    }
+		    
 			
 		} catch (SQLException e){
 			

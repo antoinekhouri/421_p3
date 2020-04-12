@@ -39,7 +39,7 @@ public class MainPage extends JFrame{
 	private void init() {
 		//Global settings
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		setTitle("Weird Database App");
+		setTitle("Canadian Entertainment Ticket Center");
 		setSize(600,200);
 
 		//Elements for error message
@@ -223,19 +223,24 @@ public class MainPage extends JFrame{
 			String newPass1 = JOptionPane.showInputDialog("Enter your new password");
 			String newPass2 = JOptionPane.showInputDialog("Enter your new password again");
 			if(!newPass1.equals(newPass2)) {
+				resMessage.setText("Password update unsuccessful.");
 				error = "Passwords do not match";
 				refreshData();
 				return;
 			}
-			String res = UpdatePasssword.newpassword(email, oldPass, newPass2);
-			if(res.equals("Success")) {
-				resMessage.setText("Password successfully update.");
+			else {
+				String res = UpdatePasssword.newpassword(email, oldPass, newPass2);
+				if(res.equals("Success")) {
+					resMessage.setText("Password successfully update.");
+					refreshData();
+					return;
+				}
+				else {
+				resMessage.setText("Password update unsuccessful.");
+				error = res;
 				refreshData();
-				return;
+				}
 			}
-			resMessage.setText("Password update unsuccessful.");
-			error = res;
-			refreshData();
 		}
 		pack();
 	}

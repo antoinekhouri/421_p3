@@ -1,9 +1,6 @@
 package commands;
 
 import java.sql.* ;
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SelectionByGenre {
@@ -22,7 +19,8 @@ public class SelectionByGenre {
 	        while (rs.next()) {
 	            String actname = rs.getString(4) ;
 	            Date eventdate = rs.getDate(6) ;
-	            String output = "Act: " + actname + " Date: "+eventdate.toString() ;
+	            Time startTime = rs.getTime(1) ; 
+	            String output = "Act: " + actname + " Date: "+eventdate.toString() + " Start Time: "+ startTime.toString();
 	            array_output.add(output) ;
 	        }
 	        

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="326dccce-80ef-429f-863c-429545bab107" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="cs421" type="feb32156:DbDataSourceImpl" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="421_p3" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1aH0mUimB5VG9aIkiYOXFEpe4hJ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="postgresql" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="326dccce-80ef-429f-863c-429545bab107" name="Default Changelist" comment="" />
+      <created>1586377370143</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586377370143</updated>
+      <workItem from="1586377374438" duration="3022000" />
+      <workItem from="1586381584264" duration="5380000" />
+      <workItem from="1586540685153" duration="62000" />
+      <workItem from="1586540775400" duration="5437000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="320" y="83" key="#Project_Structure" timestamp="1586540781554">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="320" y="83" key="#Project_Structure/0.23.1440.823@0.23.1440.823" timestamp="1586540781554" />
+    <state x="320" y="83" key="#Project_Structure/0.23.1440.825@0.23.1440.825" timestamp="1586377385233" />
+    <state x="284" y="83" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586546925296">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="284" y="83" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.823@0.23.1440.823" timestamp="1586546925296" />
+    <state x="284" y="83" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.825@0.23.1440.825" timestamp="1586383215774" />
+    <state x="391" y="228" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586457600098">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state x="391" y="228" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.825@0.23.1440.825" timestamp="1586457600098" />
+    <state width="0" height="0" key="GridCell.Tab.0.bottom" timestamp="1586546805047">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state width="0" height="0" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1586546805047" />
+    <state width="908" height="199" key="GridCell.Tab.0.bottom/0.23.1440.825@0.23.1440.825" timestamp="1586385269086" />
+    <state width="0" height="0" key="GridCell.Tab.0.center" timestamp="1586546805047">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state width="0" height="0" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1586546805047" />
+    <state width="908" height="199" key="GridCell.Tab.0.center/0.23.1440.825@0.23.1440.825" timestamp="1586385269085" />
+    <state width="0" height="0" key="GridCell.Tab.0.left" timestamp="1586546805046">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state width="0" height="0" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1586546805046" />
+    <state width="908" height="199" key="GridCell.Tab.0.left/0.23.1440.825@0.23.1440.825" timestamp="1586385269084" />
+    <state width="0" height="0" key="GridCell.Tab.0.right" timestamp="1586546805047">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state width="0" height="0" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1586546805047" />
+    <state width="908" height="199" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1586385269085" />
+    <state width="234" height="457" key="HiddenNamespacesPopup" timestamp="1586383181790">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state width="234" height="457" key="HiddenNamespacesPopup/0.23.1440.825@0.23.1440.825" timestamp="1586383181790" />
+    <state x="363" y="249" key="com.intellij.ide.util.TipDialog" timestamp="1586540702568">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="363" y="249" key="com.intellij.ide.util.TipDialog/0.23.1440.823@0.23.1440.823" timestamp="1586540702568" />
+    <state x="363" y="250" key="com.intellij.ide.util.TipDialog/0.23.1440.825@0.23.1440.825" timestamp="1586381585135" />
+    <state x="349" y="69" width="670" height="676" key="search.everywhere.popup" timestamp="1586544263715">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="349" y="69" width="670" height="676" key="search.everywhere.popup/0.23.1440.823@0.23.1440.823" timestamp="1586544263715" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Application/Application.java</url>
+          <line>12</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
