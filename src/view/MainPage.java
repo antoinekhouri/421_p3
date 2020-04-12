@@ -14,6 +14,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+
 import commands.BuyTicket;
 import commands.GetPerformancesBetweenDates;
 import commands.RegistrationIndividual;
@@ -146,7 +149,10 @@ public class MainPage extends JFrame{
 			refreshData();
 			return;
 		} else if(commandDropDown.getSelectedItem().toString().equals("Selection By Genre")) {
-			String genre = JOptionPane.showInputDialog("Enter the genre");
+			//String genre = JOptionPane.showInputDialog("Enter the genre");
+			String[] genreList = { "Pop", "Rock", "Alternative" };
+		    String genre = (String) JOptionPane.showInputDialog(null, "Select the genre", "genre", 
+		    		JOptionPane.QUESTION_MESSAGE, null,genreList, genreList[1]); 
 			String resMsg = "";
 			ArrayList<String> resList = SelectionByGenre.select_event_by_genre(genre);
 			for (String s : resList) {
@@ -168,55 +174,56 @@ public class MainPage extends JFrame{
 			refreshData();
 			return;
 		} else if(commandDropDown.getSelectedItem().toString().equals("Buy Ticket")) {
-			String venueName = JOptionPane.showInputDialog("Enter the venue name ");
-			String startTime = JOptionPane.showInputDialog("Enter the start time");
-			String actName = JOptionPane.showInputDialog("Enter the act name");
-			String eventDate = JOptionPane.showInputDialog("Enter the event date (YYYY-MM-dd)");
-			int sectionNo = 0;
-			int rowNo = 0;
-			int seatNo =0;
-			try {
-				sectionNo = Integer.parseInt(JOptionPane.showInputDialog("Enter the section number "));
-				rowNo = Integer.parseInt(JOptionPane.showInputDialog("Enter the row number"));
-				seatNo = Integer.parseInt(JOptionPane.showInputDialog("Enter the seat number"));
-			} catch (Exception e) {
-				error = "Section number, row number and seat number must be integers.";
-				refreshData();
-				return;
-			}
-			String email = JOptionPane.showInputDialog("Enter your email");
-			String ccno = JOptionPane.showInputDialog("Enter your credit card number");
-			try {
-				boolean tf = BuyTicket.buyTicket(venueName, startTime, actName, eventDate, sectionNo, rowNo, seatNo, email, ccno);
-				if(tf) {
-					resMessage.setText("Ticket successfully purchased!");
-				} else {
-					resMessage.setText("Failed to purchase ticket");
-				}
-				refreshData();
-				return;
-			} catch (SQLException e) {
-				error = e.getMessage();
-				refreshData();
-				return;
-			}
+//			String venueName = JOptionPane.showInputDialog("Enter the venue name ");
+//			String startTime = JOptionPane.showInputDialog("Enter the start time");
+//			String actName = JOptionPane.showInputDialog("Enter the act name");
+//			String eventDate = JOptionPane.showInputDialog("Enter the event date (YYYY-MM-dd)");
+//			int sectionNo = 0;
+//			int rowNo = 0;
+//			int seatNo =0;
+//			try {
+//				sectionNo = Integer.parseInt(JOptionPane.showInputDialog("Enter the section number "));
+//				rowNo = Integer.parseInt(JOptionPane.showInputDialog("Enter the row number"));
+//				seatNo = Integer.parseInt(JOptionPane.showInputDialog("Enter the seat number"));
+//			} catch (Exception e) {
+//				error = "Section number, row number and seat number must be integers.";
+//				refreshData();
+//				return;
+//			}
+//			String email = JOptionPane.showInputDialog("Enter your email");
+//			String ccno = JOptionPane.showInputDialog("Enter your credit card number");
+//			try {
+//				boolean tf = BuyTicket.buyTicket(venueName, startTime, actName, eventDate, sectionNo, rowNo, seatNo, email, ccno);
+//				if(tf) {
+//					resMessage.setText("Ticket successfully purchased!");
+//				} else {
+//					resMessage.setText("Failed to purchase ticket");
+//				}
+//				refreshData();
+//				return;
+//			} catch (SQLException e) {
+//				error = e.getMessage();
+//				refreshData();
+//				return;
+//			}
+			return ;
 		} else if(commandDropDown.getSelectedItem().toString().equals("Get Performance Between Dates")) {
+
+			
 			String startDate = JOptionPane.showInputDialog("Enter the earliest date (YYYY-MM-dd)");
 			String endDate = JOptionPane.showInputDialog("Enter the latest date (YYYY-MM-dd)");
-			String actName = JOptionPane.showInputDialog("Enter the act name");
-			ArrayList<String> resList;
-			try {
-				resList = GetPerformancesBetweenDates.getPerformacesBetweenDates(startDate, endDate, actName);
-			} catch (SQLException e) {
-				error = e.getMessage();
-				refreshData();
-				return;
-			}
-			String resMsg = "";
+			String actName = JOptionPane.showInputDialog("Enter the performer");
+
+			String resMsg = "Start Time End Time Act Name";
+			ArrayList<String> resList = GetPerformancesBetweenDates.getPerformacesBetweenDates(startDate, endDate, actName);
+			
 			for (String s : resList) {
 				resMsg = resMsg + "<br>" + s;
 			}
 			resMessage.setText("<html>"+ resMsg + "<html>");
+			
+			
+			
 		}else if(commandDropDown.getSelectedItem().toString().equals("Update Password")) {
 			String email = JOptionPane.showInputDialog("Enter your email");
 			String oldPass = JOptionPane.showInputDialog("Enter your old password");
