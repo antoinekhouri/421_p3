@@ -28,6 +28,16 @@ public class BuyTicket {
             // Mark seat as unavailable
             sqlString = "UPDATE ticket SET availability = false WHERE ticketid = '" + ticketId+"';";
             stmt.executeUpdate(sqlString);
+            
+            // Add credit card if need be
+            sqlString = "SELECT * FROM creditcard WHERE email = '" + email + "' AND ccno = '"+ ccno + "';";
+            rs = stmt.executeQuery(sqlString);
+            if (!rs.next()) {
+            	sqlString = "INSERT INTO creditcard (ccno, email) VALUES ('" + ccno +"','" + email+ "');";
+            	stmt.executeUpdate(sqlString);
+            	
+            }
+            
 
             //Assign Ticket to Customer
             sqlString = "INSERT INTO Buys VALUES ('" + ticketId + "', '" + ccno + "', '" + email + "');";

@@ -1,5 +1,8 @@
 package commands;
 
+import java.util.regex.Matcher; 
+import java.util.regex.Pattern; 
+
 import java.sql.* ;
 import java.sql.DriverManager;
 import java.sql.Connection;
@@ -16,6 +19,14 @@ public class RegistrationIndividual {
         try {
         	String url = "jdbc:postgresql://comp421.cs.mcgill.ca:5432/cs421";
             Connection con = DriverManager.getConnection (url,"cs421g13", "Comp421!") ;
+            
+            // check email
+            Pattern emailregex = Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$"); 
+            
+            if (!emailregex.matcher(email).matches()) {
+            	return "Email format is not valid";
+            }
+                      
 
 
             // Inserting Data into the table

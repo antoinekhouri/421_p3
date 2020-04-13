@@ -164,7 +164,7 @@ public class MainPage extends JFrame{
 			//String genre = JOptionPane.showInputDialog("Enter the genre");
 			String[] genreList = { "Pop", "Rock", "Alternative" };
 		    String genre = (String) JOptionPane.showInputDialog(null, "Select the genre", "genre", 
-		    		JOptionPane.QUESTION_MESSAGE, null,genreList, genreList[1]); 
+		    		JOptionPane.QUESTION_MESSAGE, null,genreList, genreList[0]); 
 
 			DefaultTableModel resTable = SelectionByGenre.select_event_by_genre(genre);
 			
@@ -187,7 +187,7 @@ public class MainPage extends JFrame{
 			return;
 
 
-		} else if(commandDropDown.getSelectedItem().toString().equals("Register as individual")) {
+		} else if(commandDropDown.getSelectedItem().toString().equals("Register as Individual")) {
 			String email = JOptionPane.showInputDialog("Enter your email");
 			String password = JOptionPane.showInputDialog("Enter your password");
 			String lastname = JOptionPane.showInputDialog("Enter your last name");
@@ -264,7 +264,7 @@ public class MainPage extends JFrame{
 					return;
 				}
 				else {
-				resMessage.setText("Password update unsuccessful.");
+				resMessage.setText("Password update unsuccessful.\n Check that the information entered are correct ");
 				error = res;
 				refreshData();
 				}
